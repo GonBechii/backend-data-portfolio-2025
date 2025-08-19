@@ -1,0 +1,202 @@
+[
+  {
+    "model": "core.product",
+    "pk": 1,
+    "fields": {
+      "sku": "ALM-CAF-500",
+      "name": "Café molido 500 g",
+      "price": "3990.00",
+      "stock": 80
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 2,
+    "fields": {
+      "sku": "ALI-ARZ-1K",
+      "name": "Arroz largo 1 kg",
+      "price": "1890.00",
+      "stock": 120
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 3,
+    "fields": {
+      "sku": "ALI-AZU-1K",
+      "name": "Azúcar blanca 1 kg",
+      "price": "1490.00",
+      "stock": 95
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 4,
+    "fields": {
+      "sku": "BEB-JUG-NAR1L",
+      "name": "Jugo de naranja 1 L",
+      "price": "1790.00",
+      "stock": 60
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 5,
+    "fields": {
+      "sku": "BEB-AGM-1500",
+      "name": "Agua mineral 1.5 L",
+      "price": "990.00",
+      "stock": 200
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 6,
+    "fields": {
+      "sku": "LIM-DET-900",
+      "name": "Detergente líquido 900 ml",
+      "price": "3590.00",
+      "stock": 70
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 7,
+    "fields": {
+      "sku": "LIM-SUAV-900",
+      "name": "Suavizante 900 ml",
+      "price": "3290.00",
+      "stock": 65
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 8,
+    "fields": {
+      "sku": "HOG-PAP-HIG4",
+      "name": "Papel higiénico 4 un",
+      "price": "2690.00",
+      "stock": 85
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 9,
+    "fields": {
+      "sku": "HOG-TOA-COC2",
+      "name": "Toalla de cocina 2 un",
+      "price": "2390.00",
+      "stock": 40
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 10,
+    "fields": {
+      "sku": "SNK-GAL-CHO",
+      "name": "Galletas de chocolate 150 g",
+      "price": "1190.00",
+      "stock": 100
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 11,
+    "fields": {
+      "sku": "SNK-MAN-200",
+      "name": "Maní salado 200 g",
+      "price": "990.00",
+      "stock": 110
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 12,
+    "fields": {
+      "sku": "LAC-LEC-DES1L",
+      "name": "Leche descremada 1 L",
+      "price": "1090.00",
+      "stock": 150
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 13,
+    "fields": {
+      "sku": "LAC-YOG-FRU1",
+      "name": "Yogur frutos rojos 160 g",
+      "price": "790.00",
+      "stock": 130
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 14,
+    "fields": {
+      "sku": "PAN-MAR-500",
+      "name": "Margarina 500 g",
+      "price": "1990.00",
+      "stock": 55
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 15,
+    "fields": {
+      "sku": "FRU-MAN-KG",
+      "name": "Manzana roja 1 kg",
+      "price": "1490.00",
+      "stock": 75
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 16,
+    "fields": {
+      "sku": "VER-TOM-KG",
+      "name": "Tomate 1 kg",
+      "price": "1990.00",
+      "stock": 90
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 17,
+    "fields": {
+      "sku": "CAR-ARV-500",
+      "name": "Arvejas congeladas 500 g",
+      "price": "1790.00",
+      "stock": 45
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 18,
+    "fields": {
+      "sku": "CAR-HEL-1L",
+      "name": "Helado vainilla 1 L",
+      "price": "3990.00",
+      "stock": 30
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 19,
+    "fields": {
+      "sku": "TEC-MOU-USB",
+      "name": "Mouse óptico USB",
+      "price": "5990.00",
+      "stock": 25
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 20,
+    "fields": {
+      "sku": "TEC-TECL-MEM",
+      "name": "Teclado de membrana",
+      "price": "8990.00",
+      "stock": 15
+    }
+  }
+]

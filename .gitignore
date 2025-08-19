@@ -1,0 +1,8 @@
+**/__pycache__/
+**/*.py[cod]
+orders_inventory_api/.venv/
+.env
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
