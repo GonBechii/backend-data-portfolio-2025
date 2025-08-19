@@ -212,5 +212,5 @@ MIT. Libre para uso educativo y demostrativo.
 
 ## 📬 Contacto
 **Diego Gárate** — *Open to Work (Backend Jr & Trainee de Datos)*  
-LinkedIn: https://www.linkedin.com/in/tu-perfil/  
-Email: tu_correo@ejemplo.com
+LinkedIn: https://www.linkedin.com/in/diegogarate/  
+Email: garatediego.1@gmail.com
