@@ -211,17 +211,20 @@ python manage.py loaddata ../seeds/products_fixture.json
 ---
 
 ## 🧭 Roadmap (10 semanas)
-- [x] Semana 1: Setup, modelo `Product`, admin, seeds
-- [ ] Semana 2: `Customer`, `Order`, `OrderItem` + CRUD DRF
-- [ ] Semana 3: Tests, performance (select_related, índices), manejo de errores
+- [x]  Semana 1 (en curso): Setup + DB en Docker + Admin con órdenes e ítems + seeds + docs
+          - [x]  Monorepo y modelo Product
+          - [x]  MariaDB + Adminer con Docker; conexión desde Django
+          - [x]  Order + OrderItem en admin (precio auto y line_total calculado)
+          - [x]  Seeds de productos
+          - [ ]  Documentación final S1 + capturas + mini demo (viernes)
+- [ ] Semana 2: CRUD DRF (/api/products read-only, /api/customers, /api/orders con ítems anidados), búsqueda/paginación, JWT básico, Swagger
+- [ ] Semana 3: Tests (pytest/coverage), manejo de errores, select_related/prefetch_related, índices y EXPLAIN
 - [ ] Semana 4: Tareas asíncronas (Celery), exportación CSV, correo
 - [ ] Semana 5: ETL (Pandas) con datos simulados → MySQL
 - [ ] Semana 6: Esquema estrella + Dashboard Power BI
 - [ ] Semana 7: Orquestación + API de KPIs
 - [ ] Semana 8: Docker + CI/CD + Deploy público
 - [ ] Semana 9: Documentación completa + métricas
-- [ ] Semana 10: Entrevista + posts y demos públicas
-
 ---
 
 ## 🤝 Contribuir
