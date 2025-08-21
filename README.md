@@ -26,7 +26,7 @@ Este repo contiene el **Proyecto 1 — Orders & Inventory API** y, más adelante
 
 ### Requisitos
 - Python 3.12+/3.13
-- MariaDB/MySQL en local (DB: `portfolio`, usuario: `app`/`app` para DEV)
+- DB en Docker (recomendado) o MariaDB instalado local
 - Pip y venv
 
 ### 1) Clonar y preparar entorno
@@ -37,46 +37,84 @@ python -m venv .venv
 # Windows PowerShell
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
-pip install -r requirements.txt  # (opcional) o instala: django djangorestframework mysqlclient python-dotenv
+pip install -r requirements.txt   # o: pip install django djangorestframework mysqlclient python-dotenv
 ```
 
-> Si `mysqlclient` falla en Windows, usa **PyMySQL**: `pip install pymysql` y agrega en `config/__init__.py`:
+> Si `mysqlclient` falla en Windows, usa **PyMySQL**: `pip install pymysql` y en orders_inventory_api/config/__init__.py agrega:
 > ```python
 > import pymysql
 > pymysql.install_as_MySQLdb()
 > ```
 
-### 2) Variables de entorno
-Crea `orders_inventory_api/.env`:
-```
+### 2) Base de Datos
+Opción A — Docker (recomendada)
+
+# desde la raíz del repo
+cd C:\backend-data-portfolio-2025
+docker compose --env-file .env.db up -d
+# Adminer: http://localhost:8080  (Servidor: db | Usuario: app | Clave: app | DB: portfolio)
+
+
+Opción B — Local
+
+MariaDB corriendo en 127.0.0.1:3306 con usuario app/app y DB portfolio.
+
+### 3) Variables de entorno(Django)
+Crea orders_inventory_api/.env:
+
 SECRET_KEY=dev-secret
 DB_HOST=127.0.0.1
-DB_PORT=3306
+DB_PORT=3307        # 3307 si usas Docker (mapeado); 3306 si es instalación local
 DB_NAME=portfolio
 DB_USER=app
 DB_PASS=app
-```
 
-### 3) Migraciones y (opcional) datos de ejemplo
-```bash
+### 4) Migraciones, seeds y runserver
+cd backend-data-portfolio-2025/orders_inventory_api
 python manage.py migrate
-# (opcional) carga productos de ejemplo
+# (opcional) productos de ejemplo
 python manage.py loaddata ../seeds/products_fixture.json
 python manage.py runserver
-```
 
-Admin: http://127.0.0.1:8000/admin/  
-API: http://127.0.0.1:8000/api/
 
----
+- Admin: http://127.0.0.1:8000/admin
+
+- API (próximo paso Sem. 2): http://127.0.0.1:8000/api/
 
 ## 🧱 Modelo de datos (Proyecto 1)
 
 ```mermaid
 erDiagram
-    PRODUCT ||--o{ ORDER_ITEM : incluye
-    ORDER ||--o{ ORDER_ITEM : tiene
     CUSTOMER ||--o{ ORDER : realiza
+    ORDER    ||--|{ ORDER_ITEM : tiene
+    PRODUCT  ||--o{ ORDER_ITEM : incluye
+
+    CUSTOMER {
+      int id PK
+      string name
+      string email
+      string phone
+      datetime created_at
+    }
+
+    ORDER {
+      int id PK
+      int customer_id FK
+      enum status        "PENDING|PAID|SHIPPED|CANCELLED"
+      decimal subtotal
+      decimal total
+      datetime created_at
+      datetime updated_at
+    }
+
+    ORDER_ITEM {
+      int id PK
+      int order_id FK
+      int product_id FK
+      int quantity
+      decimal unit_price
+      decimal line_total
+    }
 
     PRODUCT {
       int id PK
@@ -85,27 +123,14 @@ erDiagram
       decimal price
       int stock
     }
-    CUSTOMER {
-      int id PK
-      string name
-      string email
-      string phone
-    }
-    ORDER {
-      int id PK
-      enum status
-      decimal subtotal
-      decimal total
-      datetime created_at
-    }
-    ORDER_ITEM {
-      int id PK
-      int quantity
-      decimal unit_price
-      decimal line_total
-    }
 ```
+## Notas (coinciden con el código)
 
+- ORDER_ITEM: quantity > 0 y unique_together (order_id, product_id).
+
+- ORDER: recalcula subtotal y total después de guardar los ítems.
+
+- En Docker: la app conecta a 127.0.0.1:3307; Adminer usa host db.
 ---
 
 ## 🔌 Endpoints principales (DRF)
