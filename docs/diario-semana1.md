@@ -78,13 +78,81 @@ python manage.py runserver
   - Inline de `OrderItem` dentro de `Order`.
   - Recalculo de totales en `save_related()`.
 
-### 🧪 Evidencia rápida (comandos)
+---
 
+## Día 3 — Miércoles 20 ago 2025
+
+### 🎯 Objetivo del día
+Exponer **API REST** con **Django REST Framework**:
+- `GET /api/products/` (read-only, búsqueda/ordenación)
+- `CRUD /api/customers/`
+- `CRUD /api/orders/` con **ítems anidados** y **descuento de stock** al crear
+
+### ✅ Lo conseguido
+- **Routers DRF** activos en `/api/` (products, customers, orders).
+- **Serializadores**:
+  - `OrderItemWriteSerializer` para entrada; `items_detail` para salida.
+  - `customer = PrimaryKeyRelatedField(queryset=Customer.objects.all())` (fix del error de queryset).
+- **Lógica de creación de órdenes**:
+  - `transaction.atomic()` + `select_for_update()` para descontar stock de forma segura.
+  - `unit_price`: si viene vacío, se toma de `Product.price`.
+  - `line_total = quantity * unit_price`.
+  - Re-cálculo de `subtotal`/`total` al guardar.
+- **Búsqueda/ordenación** en productos (`?search=`, `?ordering=`) y **paginación** DRF.
+- **Admin** sigue operativo; al crear desde API o admin, los totales coinciden.
+
+### 🧪 Cómo probar (rápido)
+# Levantar el server
+  - cd orders_inventory_api
+  - .\.venv\Scripts\Activate.ps1
+  - python manage.py runserver
+
+# Crear Cliente
+- curl -X POST http://127.0.0.1:8000/api/customers/ \
+  - H "Content-Type: application/json" \
+  - d '{"name":"Cliente Demo","email":"cliente.demo@example.com","phone":"+56 9 1234 5678"}'
+
+# Crear orden (descuenta stock)
+
+- curl -X POST http://127.0.0.1:8000/api/orders/ \
+    - H "Content-Type: application/json" \
+    - d '{
+       "customer": 1,
+       "status": "PENDIENTE",
+       "items": [
+         { "product": 1, "quantity": 2 },
+         { "product": 3, "quantity": 1, "unit_price": 3790 }
+        ]
+      }'
+
+# Verificar
+
+  - GET /api/orders/ → ver items_detail, subtotal, total.
+
+  - GET /api/products/?search=CAF → búsqueda.
+
+  - Revisar en admin que el stock bajó.
+
+### 🧱 Bloqueos y soluciones
+
+- 404 en /api/customers/ → el router estaba en singular (customer/), se cambió a plural.
+
+- AssertionError (PrimaryKeyRelatedField sin queryset) → se añadió queryset=Customer.objects.all() en el serializer.
+
+### ▶️ Próximos pasos (Día 4)
+
+  - Documento final S1: capturas de Admin y API, README con ejemplos cURL, mini demo en video (2–3 min).
+
+  - Preparar Swagger/OpenAPI y colección Postman para iniciar Semana 2.
+
+---
+
+### 🧪 Evidencia rápida (comandos)
 ```powershell
-# Docker (desde la raíz del repo)
-docker compose --env-file .env.db up -d
-docker compose ps
-# Adminer: http://localhost:8080  (Servidor: db | Usuario: app | Clave: app | DB: portfolio)
+# Levantar
+cd orders_inventory_api
+.\.venv\Scripts\Activate.ps1
+python manage.py runserver
 
 # Django
 cd orders_inventory_api
@@ -95,6 +163,8 @@ python manage.py runserver
 
 - En **Admin**: crear **Order** y agregar **OrderItems** (deja `unit_price` vacío si quieres → se autocompleta).  
 - Ver **subtotal/total** actualizados tras guardar.
+
+---
 
 ### 🧱 Bloqueos y soluciones
 - **No se podía descargar `mariadb:11.4` / error de Engine**  
@@ -110,11 +180,7 @@ python manage.py runserver
 - **Conflicto al hacer push**  
   → `git pull --rebase`, resolver `README.md` y **push** final.
 
-### ▶️ Próximos pasos (Día 3)
-- Exponer API **DRF**:
-  - `/api/products` (read-only, búsqueda/paginación),
-  - `/api/customers` (CRUD),
-  - `/api/orders` (crear con ítems anidados y **descuento de stock atómico**).
+
 
 ---
 
