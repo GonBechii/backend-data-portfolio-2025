@@ -7,3 +7,6 @@ orders_inventory_api/.venv/
 .DS_Store
 Thumbs.db
 'n__pycache__/'n*.py[cod]'n.venv/'norders_inventory_api/.env'n
+
+# Archivos de pruebas con cURL
+orders_inventory_api/tests/curl/*.json
