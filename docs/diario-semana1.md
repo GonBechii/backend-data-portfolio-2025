@@ -7,10 +7,10 @@
 
 ## Estado general de la semana
 
-- [x] **Día 1 (Lun 18/08):** Setup del repo, Django conectado a DB, seeds.  
-- [x] **Día 2 (Mar 19/08):** Docker (MariaDB + Adminer) estable, admin funcional con órdenes e ítems.  
-- [ ] **Día 3 (Mié 20/08):** CRUD DRF (orders con ítems anidados) — _planificado_.  
-- [ ] **Día 4 (Vie 22/08):** Documentación final S1 + mini demo — _planificado_.  
+- [x] **Día 1 (Lun 18/08):** Setup del repo, Django conectado a DB, seeds. — **completado**
+- [x] **Día 2 (Mar 19/08):** Docker (MariaDB + Adminer) estable, admin funcional con órdenes e ítems.  — **completado**
+- [x] **Día 3 (Mié 20/08):** CRUD DRF (orders con ítems anidados) — **completado**
+- [x] **Día 4 (Vie 22/08):** Documentación final S1 + mini demo — **completado**
 
 ---
 
@@ -78,6 +78,12 @@ python manage.py runserver
   - Inline de `OrderItem` dentro de `Order`.
   - Recalculo de totales en `save_related()`.
 
+### ▶️ Próximos pasos (Día 3)
+  - Exponer /api/products (solo lectura), /api/customers (CRUD) y /api/orders (crear orden con ítems anidados).
+
+  - Descuento de stock atómico al crear la orden.
+
+  - Búsqueda y ordenación básicas.
 ---
 
 ## Día 3 — Miércoles 20 ago 2025
@@ -100,6 +106,44 @@ Exponer **API REST** con **Django REST Framework**:
   - Re-cálculo de `subtotal`/`total` al guardar.
 - **Búsqueda/ordenación** en productos (`?search=`, `?ordering=`) y **paginación** DRF.
 - **Admin** sigue operativo; al crear desde API o admin, los totales coinciden.
+
+### ▶️ Próximos pasos (Día 4)
+
+  - Documento final S1: capturas de Admin y API, README con ejemplos cURL, mini demo en video (2–3 min).
+
+  - Preparar Swagger/OpenAPI y colección Postman para iniciar Semana 2.
+
+---
+
+## Día 4 — Viernes 22/08/2025
+
+### 🎯 Objetivo del día
+Cierre de Semana 1 con documentación y demo inicial.
+
+### ✅ Lo conseguido
+- Se tomaron y almacenaron **capturas** de Admin, DRF y cURL en `docs/capturas/semana1/`.
+- Se actualizaron las referencias en el **README.md** (capturas + ejemplos cURL).
+- Se validó el uso de cURL en PowerShell con archivo intermedio (`body.json`).
+- Se completó la bitácora y se dejó listo el repo para Semana 2.
+
+### Evidencia rápida
+- Carpeta creada: `docs/capturas/semana1/`
+- Imágenes 01–09 (productos, órdenes, DRF, cURL).
+- Commit preparado:  
+  ```powershell
+  git checkout -b docs/day4
+  git add README.md docs/capturas/semana1/ docs/diario-semana1.md
+  git commit -m "docs(S1 Día4): capturas S1 + referencias en README y diario"
+  git push -u origin docs/day4
+
+### Importante Señalar:
+## Durante la validación de la API con **cURL** se generaron archivos JSON de prueba (`body.json`, `order.json`) para enviar payloads a los endpoints de Customers y Orders.
+
+  **Para evitar que estos archivos de apoyo contaminen el repositorio:**
+    - Se creó la carpeta `orders_inventory_api/tests/curl/` destinada a **pruebas locales**.
+    - Los archivos `body.json` y `order.json` fueron movidos allí.
+    - Se actualizó el `.gitignore` con la regla `/orders_inventory_api/tests/curl/*.json` para excluirlos del control de versiones.
+---
 
 ### 🧪 Cómo probar (rápido)
 # Levantar el server
@@ -138,14 +182,6 @@ Exponer **API REST** con **Django REST Framework**:
 - 404 en /api/customers/ → el router estaba en singular (customer/), se cambió a plural.
 
 - AssertionError (PrimaryKeyRelatedField sin queryset) → se añadió queryset=Customer.objects.all() en el serializer.
-
-### ▶️ Próximos pasos (Día 4)
-
-  - Documento final S1: capturas de Admin y API, README con ejemplos cURL, mini demo en video (2–3 min).
-
-  - Preparar Swagger/OpenAPI y colección Postman para iniciar Semana 2.
-
----
 
 ### 🧪 Evidencia rápida (comandos)
 ```powershell
@@ -186,9 +222,9 @@ python manage.py runserver
 
 ## Pendientes de la Semana 1
 
-- [ ] **ER** simple en `docs/er.md` (Mermaid) con relaciones principales.  
-- [ ] **Capturas** del admin (productos y una orden con ítems) para el README.  
-- [ ] Seguir completando este **diario** con capturas y comandos clave.  
+- [x] **ER** simple en `docs/er.md` (Mermaid) con relaciones principales.  
+- [x] **Capturas** del admin (productos y una orden con ítems) para el README.  
+- [X] Seguir completando este **diario** con capturas y comandos clave.  
 
 ---
 
@@ -211,3 +247,10 @@ python manage.py migrate
 python manage.py loaddata ../seeds/products_fixture.json
 python manage.py runserver
 ```
+
+## Estado final de la semana 1
+
+- [x] **Día 1 (Lun 18/08):** Setup del repo, Django conectado a DB, seeds. — **completado**
+- [x] **Día 2 (Mar 19/08):** Docker (MariaDB + Adminer) estable, admin funcional con órdenes e ítems.  — **completado**
+- [x] **Día 3 (Mié 20/08):** CRUD DRF (orders con ítems anidados) — **completado**
+- [x] **Día 4 (Vie 22/08):** Documentación final S1 + mini demo — **completado**
