@@ -153,7 +153,7 @@ erDiagram
    ![Customers list](docs/capturas/semana1/04-api-customers-list.png)
 
 5) **API – Orders**  
-   ![Orders list](docs/capturas/semana1/05-api-orders-list.png)
+   ![Orders list](docs/capturas/semana1/05-api-order-list.png)
 
 6) **Terminal - POST cliente (cURL)**
    ![POST cliente](docs/capturas/semana1/07-cURL-create-order.png)
