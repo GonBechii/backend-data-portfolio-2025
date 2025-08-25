@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
+DOCS_PUBLIC = os.getenv("DOCS_PUBLIC", "true").lower() == 'true'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / '.env')
@@ -42,15 +43,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'core',
+    'drf_spectacular',
+    'drf_spectacular_sidecar'
 ]
 
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 10,
+    "PAGE_SIZE": 20,
     "DEFAULT_FILTER_BACKENDS": [
         "rest_framework.filters.SearchFilter",
         "rest_framework.filters.OrderingFilter",
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 MIDDLEWARE = [
@@ -143,7 +147,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 20
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Backend & Data Portfolio 2025 — Orders & Inventory API',
+    'DESCRIPTION': 'Documentación OpenAPI 3 generada automáticamente (DJANGO + DRF)',
+    'VERSION': '1.0.0',
+    # Para proteger api/docs con login de drf
+    'SERVE_PERMISSIONS': [] if DOCS_PUBLIC else ['rest_framework.permissions.IsAuthenticated'],
 }
