@@ -20,6 +20,7 @@ from rest_framework.routers import DefaultRouter
 from core.views import ProductViewSet, CustomerViewSet, OrderViewSet
 from rest_framework.permissions import IsAuthenticated
 from drf_spectacular.views import SpectacularSwaggerView, SpectacularRedocView, SpectacularAPIView
+from django.views.generic import RedirectView
 
 
 router = DefaultRouter()
@@ -33,6 +34,7 @@ urlpatterns = [
     path("api/", include(router.urls)),
 
     # login/logout para SessionAuth
+    path('api-auth/', RedirectView.as_view(url='/api-auth/login/', permanent=False)),
     path('api-auth/', include('rest_framework.urls')),
 
     # OpenAPI schema + UIs
