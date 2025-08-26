@@ -44,17 +44,20 @@ INSTALLED_APPS = [
     'rest_framework',
     'core',
     'drf_spectacular',
-    'drf_spectacular_sidecar'
+    'drf_spectacular_sidecar',
+    'django_filters',
 ]
 
 REST_FRAMEWORK = {
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 20,
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
         "rest_framework.filters.SearchFilter",
         "rest_framework.filters.OrderingFilter",
     ],
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+
 }
 
 MIDDLEWARE = [
@@ -154,3 +157,7 @@ SPECTACULAR_SETTINGS = {
     # Para proteger api/docs con login de drf
     'SERVE_PERMISSIONS': [] if DOCS_PUBLIC else ['rest_framework.permissions.IsAuthenticated'],
 }
+
+SPECTACULAR_SETTINGS.update({
+    "SERVE_INCLUDE_SCHEMA": False,      # evita duplicar el schema dentro de api/docs
+})

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, permissions, filters
 from .models import Product, Customer, Order
 from .serializers import (
@@ -6,24 +7,31 @@ from .serializers import (
     CustomerSerializer,
     OrderSerializer,
 )
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all().order_by("id")
     serializer_class = ProductSerializer
     permission_classes = [permissions.AllowAny]
-    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [DjangoFilterBackend,
+                       filters.SearchFilter,
+                       filters.OrderingFilter]
     search_fields = ["sku", "name"]
-    ordering_fields = ["name", "price", "sotck"]
+    ordering_fields = ["name", "price", "stock"]
+    filterset_fields = ["sku", "price", "stock"]
 
 
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all().order_by("id")
     serializer_class = CustomerSerializer
     permission_classes = [permissions.AllowAny]
-    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [DjangoFilterBackend,
+                       filters.SearchFilter,
+                       filters.OrderingFilter]
     search_fields = ["name", "email"]
     ordering_fields = ["name", "id"]
+    filterset_fields = ["name", "email"]
 
 
 class OrderViewSet(viewsets.ModelViewSet):
@@ -35,5 +43,9 @@ class OrderViewSet(viewsets.ModelViewSet):
     )
     serializer_class = OrderSerializer
     permission_classes = [permissions.AllowAny]
-    filter_backends = [filters.OrderingFilter]
-    ordering_fields = ["id", "created_at"]
+    filter_backends = [DjangoFilterBackend,
+                       filters.SearchFilter,
+                       filters.OrderingFilter]
+    search_fields = ["customer__name", "status"]
+    ordering_fields = ["id", "created_at", "total", "subtotal"]
+    filterset_fields = ["status", "customer"]

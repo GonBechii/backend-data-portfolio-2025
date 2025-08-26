@@ -148,7 +148,7 @@ erDiagram
 📸 Ver todas las capturas → [docs/capturas/semana1/](docs/capturas/semana1/)
 
 ### Capturas - Semana 2
-1) **Swagger UI - endpints documentados**  
+1) **Swagger UI - endpoints documentados**  
    ![Swagger UI](docs/capturas/semana2/01-swagger.png)
 
 2) **Redoc - vista alternativa**
