@@ -1,0 +1,1654 @@
+{
+	"info": {
+		"_postman_id": "d73d7fc8-bdfc-49af-b1e6-a435b1f5528b",
+		"name": "Backend & Data Portfolio 2025 — Orders & Inventory API",
+		"description": "Documentación OpenAPI 3 generada automáticamente (DJANGO + DRF)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40266725"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "customers",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "api customers retrieve",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "sessionid",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "{{apiKey}}",
+													"type": "string"
+												},
+												{
+													"key": "in",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/customers/:id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"customers",
+												":id",
+												""
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1263",
+													"description": "(Required) Un valor de entero único que identifique este customer."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Untitled Response",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "sessionid",
+														"value": "<API Key>",
+														"description": "Added as a part of security scheme: apikey"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/customers/:id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"customers",
+														":id",
+														""
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"email\": \"sRK5TyGJfHyAHF@VJipVBFbPirBKPVnTtLEEjLpHiXx.je\",\n  \"id\": 8942,\n  \"name\": \"string\",\n  \"phone\": \"string\"\n}"
+										}
+									]
+								},
+								{
+									"name": "api customers update",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "sessionid",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "{{apiKey}}",
+													"type": "string"
+												},
+												{
+													"key": "in",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"kCKEiF@fuwDKFQ.gu\",\n  \"name\": \"string\",\n  \"phone\": \"string\",\n  \"id\": 56\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/customers/:id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"customers",
+												":id",
+												""
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1263",
+													"description": "(Required) Un valor de entero único que identifique este customer."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Untitled Response",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "sessionid",
+														"value": "<API Key>",
+														"description": "Added as a part of security scheme: apikey"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"email\": \"kCKEiF@fuwDKFQ.gu\",\n  \"name\": \"string\",\n  \"phone\": \"string\",\n  \"id\": 56\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/customers/:id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"customers",
+														":id",
+														""
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"email\": \"sRK5TyGJfHyAHF@VJipVBFbPirBKPVnTtLEEjLpHiXx.je\",\n  \"id\": 8942,\n  \"name\": \"string\",\n  \"phone\": \"string\"\n}"
+										}
+									]
+								},
+								{
+									"name": "api customers partial update",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "sessionid",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "{{apiKey}}",
+													"type": "string"
+												},
+												{
+													"key": "in",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"email\": \"NyJ2uppzIO7@rvIaZnaYVodY.pbq\",\n  \"phone\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/customers/:id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"customers",
+												":id",
+												""
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1263",
+													"description": "(Required) Un valor de entero único que identifique este customer."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Untitled Response",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "sessionid",
+														"value": "<API Key>",
+														"description": "Added as a part of security scheme: apikey"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"string\",\n  \"email\": \"NyJ2uppzIO7@rvIaZnaYVodY.pbq\",\n  \"phone\": \"string\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/customers/:id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"customers",
+														":id",
+														""
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"email\": \"sRK5TyGJfHyAHF@VJipVBFbPirBKPVnTtLEEjLpHiXx.je\",\n  \"id\": 8942,\n  \"name\": \"string\",\n  \"phone\": \"string\"\n}"
+										}
+									]
+								},
+								{
+									"name": "api customers destroy",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "sessionid",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "{{apiKey}}",
+													"type": "string"
+												},
+												{
+													"key": "in",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/customers/:id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"customers",
+												":id",
+												""
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1263",
+													"description": "(Required) Un valor de entero único que identifique este customer."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "No response body",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "sessionid",
+														"value": "<API Key>",
+														"description": "Added as a part of security scheme: apikey"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/customers/:id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"customers",
+														":id",
+														""
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "api customers list",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "sessionid",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/customers/?email=string&name=string&ordering=string&page=1263&search=string",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"customers",
+										""
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "string"
+										},
+										{
+											"key": "name",
+											"value": "string"
+										},
+										{
+											"key": "ordering",
+											"value": "string",
+											"description": "Qué campo usar para ordenar los resultados."
+										},
+										{
+											"key": "page",
+											"value": "1263",
+											"description": "Un número de página dentro del conjunto de resultados paginado."
+										},
+										{
+											"key": "search",
+											"value": "string",
+											"description": "Un término de búsqueda."
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "sessionid",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/customers/?email=string&name=string&ordering=string&page=1263&search=string",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"customers",
+												""
+											],
+											"query": [
+												{
+													"key": "email",
+													"value": "string"
+												},
+												{
+													"key": "name",
+													"value": "string"
+												},
+												{
+													"key": "ordering",
+													"value": "string",
+													"description": "Qué campo usar para ordenar los resultados."
+												},
+												{
+													"key": "page",
+													"value": "1263",
+													"description": "Un número de página dentro del conjunto de resultados paginado."
+												},
+												{
+													"key": "search",
+													"value": "string",
+													"description": "Un término de búsqueda."
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"email\": \"I6vJFwHMp3bV@KwWrj.naf\",\n      \"id\": 4555,\n      \"name\": \"string\",\n      \"phone\": \"string\"\n    },\n    {\n      \"email\": \"d9H4MzIMRqsH85b@wMYrmwKNVHGSgHhhuXVAIuEKkMkWBS.ycc\",\n      \"id\": 3793,\n      \"name\": \"string\",\n      \"phone\": \"string\"\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?page=4\",\n  \"previous\": \"http://api.example.org/accounts/?page=2\"\n}"
+								}
+							]
+						},
+						{
+							"name": "api customers create",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "sessionid",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"kCKEiF@fuwDKFQ.gu\",\n  \"name\": \"string\",\n  \"phone\": \"string\",\n  \"id\": 56\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/customers/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"customers",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "sessionid",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"kCKEiF@fuwDKFQ.gu\",\n  \"name\": \"string\",\n  \"phone\": \"string\",\n  \"id\": 56\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/customers/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"customers",
+												""
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"email\": \"sRK5TyGJfHyAHF@VJipVBFbPirBKPVnTtLEEjLpHiXx.je\",\n  \"id\": 8942,\n  \"name\": \"string\",\n  \"phone\": \"string\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "orders",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "api orders retrieve",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "sessionid",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "{{apiKey}}",
+													"type": "string"
+												},
+												{
+													"key": "in",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/orders/:id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"orders",
+												":id",
+												""
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1263",
+													"description": "(Required) Un valor de entero único que identifique este order."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Untitled Response",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "sessionid",
+														"value": "<API Key>",
+														"description": "Added as a part of security scheme: apikey"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/orders/:id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"orders",
+														":id",
+														""
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"created_at\": \"2007-10-07T07:57:41.725Z\",\n  \"customer\": 6519,\n  \"id\": 6731,\n  \"items_detail\": [\n    {\n      \"id\": 6990,\n      \"line_total\": \"0105353519.\",\n      \"product\": {\n        \"id\": 1465,\n        \"name\": \"string\",\n        \"price\": \"-5513.\",\n        \"sku\": \"string\",\n        \"stock\": 492615529\n      },\n      \"quantity\": 3515895865,\n      \"unit_price\": \"1\"\n    },\n    {\n      \"id\": 8306,\n      \"line_total\": \"-89921\",\n      \"product\": {\n        \"id\": 635,\n        \"name\": \"string\",\n        \"price\": \"-768251\",\n        \"sku\": \"string\",\n        \"stock\": 3679568267\n      },\n      \"quantity\": 3993430136,\n      \"unit_price\": \"-89589930.95\"\n    }\n  ],\n  \"subtotal\": \"-4081549\",\n  \"total\": \"-2596174501\",\n  \"status\": \"PAID\"\n}"
+										}
+									]
+								},
+								{
+									"name": "api orders update",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "sessionid",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "{{apiKey}}",
+													"type": "string"
+												},
+												{
+													"key": "in",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"customer\": 5972,\n  \"items\": [\n    {\n      \"product\": 1984,\n      \"quantity\": 3285562495,\n      \"unit_price\": \"-4023792.\"\n    },\n    {\n      \"product\": 4188,\n      \"quantity\": 3994947207,\n      \"unit_price\": \"933\"\n    }\n  ],\n  \"status\": \"CANCELLED\",\n  \"created_at\": false,\n  \"id\": true,\n  \"items_detail\": \"string\",\n  \"subtotal\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/orders/:id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"orders",
+												":id",
+												""
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1263",
+													"description": "(Required) Un valor de entero único que identifique este order."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Untitled Response",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "sessionid",
+														"value": "<API Key>",
+														"description": "Added as a part of security scheme: apikey"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"customer\": 5972,\n  \"items\": [\n    {\n      \"product\": 1984,\n      \"quantity\": 3285562495,\n      \"unit_price\": \"-4023792.\"\n    },\n    {\n      \"product\": 4188,\n      \"quantity\": 3994947207,\n      \"unit_price\": \"933\"\n    }\n  ],\n  \"status\": \"CANCELLED\",\n  \"created_at\": false,\n  \"id\": true,\n  \"items_detail\": \"string\",\n  \"subtotal\": \"string\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/orders/:id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"orders",
+														":id",
+														""
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"created_at\": \"2007-10-07T07:57:41.725Z\",\n  \"customer\": 6519,\n  \"id\": 6731,\n  \"items_detail\": [\n    {\n      \"id\": 6990,\n      \"line_total\": \"0105353519.\",\n      \"product\": {\n        \"id\": 1465,\n        \"name\": \"string\",\n        \"price\": \"-5513.\",\n        \"sku\": \"string\",\n        \"stock\": 492615529\n      },\n      \"quantity\": 3515895865,\n      \"unit_price\": \"1\"\n    },\n    {\n      \"id\": 8306,\n      \"line_total\": \"-89921\",\n      \"product\": {\n        \"id\": 635,\n        \"name\": \"string\",\n        \"price\": \"-768251\",\n        \"sku\": \"string\",\n        \"stock\": 3679568267\n      },\n      \"quantity\": 3993430136,\n      \"unit_price\": \"-89589930.95\"\n    }\n  ],\n  \"subtotal\": \"-4081549\",\n  \"total\": \"-2596174501\",\n  \"status\": \"PAID\"\n}"
+										}
+									]
+								},
+								{
+									"name": "api orders partial update",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "sessionid",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "{{apiKey}}",
+													"type": "string"
+												},
+												{
+													"key": "in",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"customer\": 8762,\n  \"status\": \"PAID\",\n  \"items\": [\n    {\n      \"product\": 5839,\n      \"quantity\": 3234556114,\n      \"unit_price\": \"7\"\n    },\n    {\n      \"product\": 1087,\n      \"quantity\": 1095039619,\n      \"unit_price\": \".\"\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/orders/:id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"orders",
+												":id",
+												""
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1263",
+													"description": "(Required) Un valor de entero único que identifique este order."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Untitled Response",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "sessionid",
+														"value": "<API Key>",
+														"description": "Added as a part of security scheme: apikey"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"customer\": 8762,\n  \"status\": \"PAID\",\n  \"items\": [\n    {\n      \"product\": 5839,\n      \"quantity\": 3234556114,\n      \"unit_price\": \"7\"\n    },\n    {\n      \"product\": 1087,\n      \"quantity\": 1095039619,\n      \"unit_price\": \".\"\n    }\n  ]\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/orders/:id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"orders",
+														":id",
+														""
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"created_at\": \"2007-10-07T07:57:41.725Z\",\n  \"customer\": 6519,\n  \"id\": 6731,\n  \"items_detail\": [\n    {\n      \"id\": 6990,\n      \"line_total\": \"0105353519.\",\n      \"product\": {\n        \"id\": 1465,\n        \"name\": \"string\",\n        \"price\": \"-5513.\",\n        \"sku\": \"string\",\n        \"stock\": 492615529\n      },\n      \"quantity\": 3515895865,\n      \"unit_price\": \"1\"\n    },\n    {\n      \"id\": 8306,\n      \"line_total\": \"-89921\",\n      \"product\": {\n        \"id\": 635,\n        \"name\": \"string\",\n        \"price\": \"-768251\",\n        \"sku\": \"string\",\n        \"stock\": 3679568267\n      },\n      \"quantity\": 3993430136,\n      \"unit_price\": \"-89589930.95\"\n    }\n  ],\n  \"subtotal\": \"-4081549\",\n  \"total\": \"-2596174501\",\n  \"status\": \"PAID\"\n}"
+										}
+									]
+								},
+								{
+									"name": "api orders destroy",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "sessionid",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "{{apiKey}}",
+													"type": "string"
+												},
+												{
+													"key": "in",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/orders/:id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"orders",
+												":id",
+												""
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1263",
+													"description": "(Required) Un valor de entero único que identifique este order."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "No response body",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "sessionid",
+														"value": "<API Key>",
+														"description": "Added as a part of security scheme: apikey"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/orders/:id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"orders",
+														":id",
+														""
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "api orders list",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "sessionid",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/orders/?customer=1263&ordering=string&page=1263&search=string&status=PAID",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										""
+									],
+									"query": [
+										{
+											"key": "customer",
+											"value": "1263"
+										},
+										{
+											"key": "ordering",
+											"value": "string",
+											"description": "Qué campo usar para ordenar los resultados."
+										},
+										{
+											"key": "page",
+											"value": "1263",
+											"description": "Un número de página dentro del conjunto de resultados paginado."
+										},
+										{
+											"key": "search",
+											"value": "string",
+											"description": "Un término de búsqueda."
+										},
+										{
+											"key": "status",
+											"value": "PAID",
+											"description": "* `PENDING` - Pendiente\n* `PAID` - Pagado\n* `SHIPPED` - Enviado\n* `CANCELLED` - Cancelado"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "sessionid",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/orders/?customer=1263&ordering=string&page=1263&search=string&status=PAID",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"orders",
+												""
+											],
+											"query": [
+												{
+													"key": "customer",
+													"value": "1263"
+												},
+												{
+													"key": "ordering",
+													"value": "string",
+													"description": "Qué campo usar para ordenar los resultados."
+												},
+												{
+													"key": "page",
+													"value": "1263",
+													"description": "Un número de página dentro del conjunto de resultados paginado."
+												},
+												{
+													"key": "search",
+													"value": "string",
+													"description": "Un término de búsqueda."
+												},
+												{
+													"key": "status",
+													"value": "PAID",
+													"description": "* `PENDING` - Pendiente\n* `PAID` - Pagado\n* `SHIPPED` - Enviado\n* `CANCELLED` - Cancelado"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"created_at\": \"1978-06-16T01:53:40.853Z\",\n      \"customer\": 432,\n      \"id\": 6171,\n      \"items_detail\": [\n        {\n          \"id\": 6284,\n          \"line_total\": \"213395.\",\n          \"product\": {\n            \"id\": 6135,\n            \"name\": \"string\",\n            \"price\": \"79907.3\",\n            \"sku\": \"string\",\n            \"stock\": 4065492816\n          },\n          \"quantity\": 4286796547,\n          \"unit_price\": \"27\"\n        },\n        {\n          \"id\": 7656,\n          \"line_total\": \"22\",\n          \"product\": {\n            \"id\": 8654,\n            \"name\": \"string\",\n            \"price\": \"-0741.\",\n            \"sku\": \"string\",\n            \"stock\": 2880568072\n          },\n          \"quantity\": 646297108,\n          \"unit_price\": \"85010758.02\"\n        }\n      ],\n      \"subtotal\": \"6037551000.\",\n      \"total\": \"-78.\",\n      \"status\": \"CANCELLED\"\n    },\n    {\n      \"created_at\": \"1992-02-27T07:27:14.178Z\",\n      \"customer\": 8992,\n      \"id\": 1326,\n      \"items_detail\": [\n        {\n          \"id\": 2555,\n          \"line_total\": \"0962436.\",\n          \"product\": {\n            \"id\": 8342,\n            \"name\": \"string\",\n            \"price\": \"7758381\",\n            \"sku\": \"string\",\n            \"stock\": 3750143124\n          },\n          \"quantity\": 3741451054,\n          \"unit_price\": \"59610055.\"\n        },\n        {\n          \"id\": 4521,\n          \"line_total\": \"-867.\",\n          \"product\": {\n            \"id\": 527,\n            \"name\": \"string\",\n            \"price\": \"019\",\n            \"sku\": \"string\",\n            \"stock\": 2092327345\n          },\n          \"quantity\": 759273486,\n          \"unit_price\": \"774\"\n        }\n      ],\n      \"subtotal\": \"-931115.\",\n      \"total\": \"319272\",\n      \"status\": \"PENDING\"\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?page=4\",\n  \"previous\": \"http://api.example.org/accounts/?page=2\"\n}"
+								}
+							]
+						},
+						{
+							"name": "api orders create",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "sessionid",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"customer\": 5972,\n  \"items\": [\n    {\n      \"product\": 1984,\n      \"quantity\": 3285562495,\n      \"unit_price\": \"-4023792.\"\n    },\n    {\n      \"product\": 4188,\n      \"quantity\": 3994947207,\n      \"unit_price\": \"933\"\n    }\n  ],\n  \"status\": \"CANCELLED\",\n  \"created_at\": false,\n  \"id\": true,\n  \"items_detail\": \"string\",\n  \"subtotal\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/orders/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "sessionid",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"customer\": 5972,\n  \"items\": [\n    {\n      \"product\": 1984,\n      \"quantity\": 3285562495,\n      \"unit_price\": \"-4023792.\"\n    },\n    {\n      \"product\": 4188,\n      \"quantity\": 3994947207,\n      \"unit_price\": \"933\"\n    }\n  ],\n  \"status\": \"CANCELLED\",\n  \"created_at\": false,\n  \"id\": true,\n  \"items_detail\": \"string\",\n  \"subtotal\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/orders/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"orders",
+												""
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"created_at\": \"2007-10-07T07:57:41.725Z\",\n  \"customer\": 6519,\n  \"id\": 6731,\n  \"items_detail\": [\n    {\n      \"id\": 6990,\n      \"line_total\": \"0105353519.\",\n      \"product\": {\n        \"id\": 1465,\n        \"name\": \"string\",\n        \"price\": \"-5513.\",\n        \"sku\": \"string\",\n        \"stock\": 492615529\n      },\n      \"quantity\": 3515895865,\n      \"unit_price\": \"1\"\n    },\n    {\n      \"id\": 8306,\n      \"line_total\": \"-89921\",\n      \"product\": {\n        \"id\": 635,\n        \"name\": \"string\",\n        \"price\": \"-768251\",\n        \"sku\": \"string\",\n        \"stock\": 3679568267\n      },\n      \"quantity\": 3993430136,\n      \"unit_price\": \"-89589930.95\"\n    }\n  ],\n  \"subtotal\": \"-4081549\",\n  \"total\": \"-2596174501\",\n  \"status\": \"PAID\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "products",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "api products retrieve",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "sessionid",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "{{apiKey}}",
+													"type": "string"
+												},
+												{
+													"key": "in",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/products/:id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"products",
+												":id",
+												""
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1263",
+													"description": "(Required) Un valor de entero único que identifique este product."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Untitled Response",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "sessionid",
+														"value": "<API Key>",
+														"description": "Added as a part of security scheme: apikey"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/products/:id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"products",
+														":id",
+														""
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 8306,\n  \"name\": \"string\",\n  \"price\": \"26131523\",\n  \"sku\": \"string\",\n  \"stock\": 4261648487\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "api products list",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "sessionid",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/products/?ordering=string&page=1263&price=5776.124362458805&search=string&sku=string&stock=1263",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"products",
+										""
+									],
+									"query": [
+										{
+											"key": "ordering",
+											"value": "string",
+											"description": "Qué campo usar para ordenar los resultados."
+										},
+										{
+											"key": "page",
+											"value": "1263",
+											"description": "Un número de página dentro del conjunto de resultados paginado."
+										},
+										{
+											"key": "price",
+											"value": "5776.124362458805"
+										},
+										{
+											"key": "search",
+											"value": "string",
+											"description": "Un término de búsqueda."
+										},
+										{
+											"key": "sku",
+											"value": "string"
+										},
+										{
+											"key": "stock",
+											"value": "1263"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "sessionid",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/products/?ordering=string&page=1263&price=5776.124362458805&search=string&sku=string&stock=1263",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"products",
+												""
+											],
+											"query": [
+												{
+													"key": "ordering",
+													"value": "string",
+													"description": "Qué campo usar para ordenar los resultados."
+												},
+												{
+													"key": "page",
+													"value": "1263",
+													"description": "Un número de página dentro del conjunto de resultados paginado."
+												},
+												{
+													"key": "price",
+													"value": "5776.124362458805"
+												},
+												{
+													"key": "search",
+													"value": "string",
+													"description": "Un término de búsqueda."
+												},
+												{
+													"key": "sku",
+													"value": "string"
+												},
+												{
+													"key": "stock",
+													"value": "1263"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"id\": 3307,\n      \"name\": \"string\",\n      \"price\": \"990910.\",\n      \"sku\": \"string\",\n      \"stock\": 1394791232\n    },\n    {\n      \"id\": 6126,\n      \"name\": \"string\",\n      \"price\": \"78657.5\",\n      \"sku\": \"string\",\n      \"stock\": 1778043483\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?page=4\",\n  \"previous\": \"http://api.example.org/accounts/?page=2\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/"
+		}
+	]
+}
