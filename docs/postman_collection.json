@@ -1643,6 +1643,457 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "GET /api/customers/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 OK\", () => pm.response.code === 200);\r",
+							"pm.test(\"JSON válido\", () =>\r",
+							"  (pm.response.headers.get(\"Content-Type\") || \"\").includes(\"application/json\")\r",
+							");\r",
+							"const data = pm.response.json();\r",
+							"pm.test(\"Tiene paginación DRF (results)\", () => data && \"results\" in data);\r",
+							"pm.test(\"results es array\", () => Array.isArray(data.results));"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/customers/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 - customers list",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/customers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 02:26:41 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "304"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"count\": 3,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 1,\n            \"name\": \"Cliente Demo\",\n            \"email\": \"cliente.demo@example.com\",\n            \"phone\": \"\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"customer_2\",\n            \"email\": \"customer_2@example.com\",\n            \"phone\": \"999999999\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Cliente Demo 3\",\n            \"email\": \"clienteDemo3@example.com\",\n            \"phone\": \"+56 9 1234 5678\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "POST /api/customer/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"201 Created\", () => pm.response.code === 201);\r",
+							"\r",
+							"// Aseguramos que la respuesta sea JSON antes de parsear\r",
+							"const ct = pm.response.headers.get(\"Content-Type\") || \"\";\r",
+							"pm.test(\"Respuesta es JSON\", () => ct.includes(\"application/json\"));\r",
+							"\r",
+							"if (ct.includes(\"application/json\")) {\r",
+							"  const created = pm.response.json();\r",
+							"  pm.test(\"Devuelve id\", () => created && created.id);\r",
+							"\r",
+							"  if (created && created.id) {\r",
+							"    pm.environment.set(\"customer_id\", created.id); // ojo: environment (con 'n')\r",
+							"    pm.test(\"customer_id guardado en env\", () => !!pm.environment.get(\"customer_id\"));\r",
+							"  }\r",
+							"} else {\r",
+							"  // Log para diagnosticar si vuelve HTML (404/500)\r",
+							"  console.log(\"Body (no JSON):\", pm.response.text());\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Cliente Postman\",\r\n    \"email\": \"postman@example.com\",\r\n    \"phone\": \"+56 9 8765 4321\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/customers/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "201 - customer created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cliente Postman\",\r\n    \"email\": \"postman@example.com\",\r\n    \"phone\": \"+56 9 8765 4321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/customers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 02:36:29 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "89"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 7,\n    \"name\": \"Cliente Postman\",\n    \"email\": \"postman@example.com\",\n    \"phone\": \"+56 9 8765 4321\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GET /api/customers/{{customer_id}}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 OK\", () => pm.response.code === 200);\r",
+							"const c = pm.response.json();\r",
+							"pm.test(\"Tiene nombre\", () => c && !!c.name);\r",
+							"pm.test(\"El id coincide con env\", () => String(c.id) === String(pm.environment.get(\"customer_id\")));\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/customers/{{customer_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"{{customer_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 - customer detail",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/customers/{{customer_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"{{customer_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 02:38:31 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "89"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 7,\n    \"name\": \"Cliente Postman\",\n    \"email\": \"postman@example.com\",\n    \"phone\": \"+56 9 8765 4321\"\n}"
+				}
+			]
+		},
+		{
+			"name": "DELETE /api/customers/{{customer_id}}/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 No Content\", () => pm.response.code === 204);\r",
+							"pm.environment.unset(\"customer_id\");\r",
+							"pm.test(\"customer_id removido\", () => !pm.environment.get(\"customer_id\"));\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/customers/{{customer_id}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"{{customer_id}}",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "204 - no content (Example queda vacío, es normal)",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/customers/{{customer_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"{{customer_id}}",
+								""
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 02:41:02 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.5"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
 		}
 	],
 	"variable": [
