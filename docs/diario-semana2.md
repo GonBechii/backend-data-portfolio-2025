@@ -8,10 +8,15 @@
 ## Estado general de la semana
 
 - [x] **Día 1 (Lun 25/08):** Integración de Swagger/OpenAPI (drf-spectacular). — **completado**
-- [ ] **Día 2 (Mar 26/08):** Generar colección Postman desde OpenAPI. — _pendiente_
+- [x] **Día 2 (Mar 26/08):** Generar colección Postman desde OpenAPI. **completado**
 - [ ] **Día 3 (Mié 27/08):** JWT básico y pruebas de login/logout. — _pendiente_
 - [ ] **Día 4 (Vie 29/08):** Permisos por rol + afinación de filtros/paginación. — _pendiente_
-
+---
+## Pendientes de la Semana 2
+- [x] Generar y versionar colección Postman.
+- [ ] Implementar JWT básico.
+- [ ] Configurar permisos por rol.
+- [ ] Afinar filtros y paginación de endpoints.
 ---
 
 ## Día 1 — Lunes 25 ago 2025
@@ -68,9 +73,28 @@ python manage.py runserver
 - Versionar la colección en `docs/postman_collection.json`.
 
 ---
+## Día 2 — Martes 26 ago 2025
 
-## Pendientes de la Semana 2
-- [ ] Generar y versionar colección Postman.
-- [ ] Implementar JWT básico.
-- [ ] Configurar permisos por rol.
-- [ ] Afinar filtros y paginación de endpoints.
+### 🎯 Objetivo del día
+- Generar y validar **colección Postman** desde OpenAPI.
+- Probar **CRUD completo de Customers**.
+- Documentar con **Examples** en la colección (200, 201, 204).
+
+### ✅ Lo conseguido
+- Requests creados en la colección:
+  - `GET /api/customers/` → Example: **200 customers list**
+  - `POST /api/customers/` → Example: **201 customer created**
+  - `GET /api/customers/{id}/` → Example: **200 customer detail**
+  - `DELETE /api/customers/{id}/` → Example: **204 no content**
+- Tests Postman agregados en cada request (status codes, estructura JSON, variables env).
+- Colección exportada a `docs/postman_collection.json`.
+
+### 🧪 Evidencia rápida
+- Ejecución de tests en verde (201 Created, 200 OK, 204 No Content).
+- Variables de entorno (`customer_id`) gestionadas automáticamente.
+- Examples visibles en la colección.
+
+### ▶️ Próximos pasos (Día 3)
+- Implementar **JWT básico** con `djangorestframework-simplejwt`.
+- Agregar endpoints `/api/token/` y `/api/token/refresh/`.
+- Integrar tokens en Postman (env var `token`) y extender tests.
