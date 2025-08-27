@@ -140,20 +140,9 @@ erDiagram
 - `POST /api/orders/` — crea orden con items anidados.
 
 ### Capturas - Semana 1
-1) **Admin – Orden con ítems**  
-   ![Admin orden con ítems](docs/capturas/semana1/02-admin-orden-inline.png)
-
-2) **API Root**  
-   ![API Root](docs/capturas/semana1/03-api-root.png)
 📸 Ver todas las capturas → [docs/capturas/semana1/](docs/capturas/semana1/)
 
 ### Capturas - Semana 2
-1) **Swagger UI - endpoints documentados**  
-   ![Swagger UI](docs/capturas/semana2/01-swagger.png)
-
-2) **Redoc - vista alternativa**
-   ![Redoc](docs/capturas/semana2/02-redoc.png)
-
 📸 Ver todas las capturas → [docs/capturas/semana2/](docs/capturas/semana2/)
 
 ### Importante Señalar:
