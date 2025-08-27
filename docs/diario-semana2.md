@@ -57,6 +57,11 @@ python manage.py runserver
 #  - http://127.0.0.1:8000/api/docs/
 #  - http://127.0.0.1:8000/api/redoc/
 ```
+### Capturas guardadas
+- **01-swagger.png** → Swagger UI en `/api/docs`
+- **02-redoc.png** → Redoc en `/api/redoc`
+
+📸 Ver carpeta completa → [docs/capturas/semana2/](./capturas/semana2/)
 
 ### 🧱 Bloqueos y soluciones
 - **Error:** `Incompatible AutoSchema used on View CustomerViewSet`.  
@@ -93,6 +98,15 @@ python manage.py runserver
 - Ejecución de tests en verde (201 Created, 200 OK, 204 No Content).
 - Variables de entorno (`customer_id`) gestionadas automáticamente.
 - Examples visibles en la colección.
+
+### Capturas guardadas
+- **03-postman-get-customers.png** → Example 200 lista de clientes
+- **04-postman-post-customer.png** → Example 201 cliente creado
+- **05-postman-get-customer-detail.png** → Example 200 detalle cliente
+- **06-postman-delete-customer.png** → Example 204 delete sin contenido
+- **07-postman-examples.png** → (opcional) vista de todos los Examples en la colección
+
+📸 Ver carpeta completa → [docs/capturas/semana2/](./capturas/semana2/)
 
 ### ▶️ Próximos pasos (Día 3)
 - Implementar **JWT básico** con `djangorestframework-simplejwt`.
