@@ -9,12 +9,12 @@
 
 - [x] **Día 1 (Lun 25/08):** Integración de Swagger/OpenAPI (drf-spectacular). — **completado**
 - [x] **Día 2 (Mar 26/08):** Generar colección Postman desde OpenAPI. **completado**
-- [ ] **Día 3 (Mié 27/08):** JWT básico y pruebas de login/logout. — _pendiente_
+- [x] **Día 3 (Mié 27/08):** JWT básico y pruebas de login/logout. **completado**
 - [ ] **Día 4 (Vie 29/08):** Permisos por rol + afinación de filtros/paginación. — _pendiente_
 ---
 ## Pendientes de la Semana 2
 - [x] Generar y versionar colección Postman.
-- [ ] Implementar JWT básico.
+- [x] Implementar JWT básico.
 - [ ] Configurar permisos por rol.
 - [ ] Afinar filtros y paginación de endpoints.
 ---
@@ -58,10 +58,12 @@ python manage.py runserver
 #  - http://127.0.0.1:8000/api/redoc/
 ```
 ### Capturas guardadas
-- **01-swagger.png** → Swagger UI en `/api/docs`
-- **02-redoc.png** → Redoc en `/api/redoc`
+- **01-swagger.png**
+  ![Swagger UI en `/api/docs`](../docs/capturas/semana2/dia1/01-swagger.png)
+- **02-redoc.png** 
+  ![Redoc en `/api/redoc`](../docs/capturas/semana2/dia1/02-redoc.png)
 
-📸 Ver carpeta completa → [docs/capturas/semana2/](./capturas/semana2/)
+📸 Ver carpeta completa → [docs/capturas/semana2/](../docs/capturas/semana2/dia1/)
 
 ### 🧱 Bloqueos y soluciones
 - **Error:** `Incompatible AutoSchema used on View CustomerViewSet`.  
@@ -100,15 +102,75 @@ python manage.py runserver
 - Examples visibles en la colección.
 
 ### Capturas guardadas
-- **03-postman-get-customers.png** → Example 200 lista de clientes
-- **04-postman-post-customer.png** → Example 201 cliente creado
-- **05-postman-get-customer-detail.png** → Example 200 detalle cliente
-- **06-postman-delete-customer.png** → Example 204 delete sin contenido
-- **07-postman-examples.png** → (opcional) vista de todos los Examples en la colección
+- **01-postman-get-customers.png** 
+  ![Example 200 lista de clientes](./capturas/semana2/dia2/01-postman-get-customers.png)
+- **02-postman-post-customer.png** 
+  ![Example 201 cliente creado](./capturas/semana2/dia2/02-postman-post-customer.png)
+- **03-postman-get-customer-detail.png** 
+  ![Example 200 detalle cliente](./capturas/semana2/dia2/03-postman-get-customer-detail.png)
+- **04-postman-delete-customer.png**
+  ![Example 204 delete sin contenido](./capturas/semana2/dia2/04-postman-delete-customer.png)
+- **01-postman-examples.png**
+  ![vista de todos los Examples en la colección](../docs/capturas/semana2/dia4/01-postman-examples.png)
 
-📸 Ver carpeta completa → [docs/capturas/semana2/](./capturas/semana2/)
+📸 Ver carpeta completa → [docs/capturas/semana2/dia2/](./capturas/semana2/dia2/)
+
 
 ### ▶️ Próximos pasos (Día 3)
 - Implementar **JWT básico** con `djangorestframework-simplejwt`.
 - Agregar endpoints `/api/token/` y `/api/token/refresh/`.
 - Integrar tokens en Postman (env var `token`) y extender tests.
+
+---
+
+## 📅 Día 3 — Mié 27/08/2025  
+**Tema:** JWT básico + autenticación en Swagger/Postman  
+
+### 🔑 Objetivos
+- Configurar **JWT (SimpleJWT)** con endpoints `/api/token/`, `/api/token/refresh/`, `/api/token/verify/`.
+- Probar autenticación en **Swagger** (candado Authorize).
+- Probar autenticación en **Postman** (access/refresh token).
+- Implementar **refresh automático** ante 401 en Postman.
+
+---
+
+### ✅ Evidencia ### Capturas
+
+1. **Swagger — popup Authorize**  
+   ![Swagger Authorize](./docs/capturas/semana2/dia3/01-swagger-authorize.png)
+
+2. **Swagger — endpoint autenticado con token (200 OK)**  
+   ![Swagger Authenticated](../docs/capturas/semana2/dia3/02-swagger-authenticated.png)
+
+3. **Postman — /api/token/ (access + refresh generados)**  
+   ![Postman token](../docs/capturas/semana2/dia3/03-postman-token.png)
+
+4. **Postman — Header Authorization con Bearer {{access_token}}**  
+   ![Postman auth header](../docs/capturas/semana2/dia3/04-postman-auth-header.png)
+
+5. **Postman — /api/token/refresh/ (nuevo access)**  
+   ![Postman refresh A](../docs/capturas/semana2/dia3/05-postman-refresh-A.png)  
+   ![Postman refresh B](../docs/capturas/semana2/dia3/05-postman-refresh-B.png)
+
+6. **Postman — 401 + auto-refresh funcionando (parte A)**  
+   ![Postman 401 auto-refresh A](../docs/capturas/semana2/dia3/06-postman-401-and-auto-refresh-A.png)
+
+7. **Postman — 401 + auto-refresh funcionando (parte B, reintento OK)**  
+   ![Postman 401 auto-refresh B](../docs/capturas/semana2/dia3/06-postman-401-and-auto-refresh-B.png)
+
+8. **Swagger — GET /api/customers/ sin auth (401)**  
+   ![Swagger 401 without auth](../docs/capturas/semana2/dia3/07-swagger-401-without-auth.png)
+
+📸 Ver carpeta completa → [docs/capturas/semana2/dia3/](../docs/capturas/semana2/dia3/)
+
+---
+
+### 📝 Notas
+- Se validó que sin token Swagger devuelve **401 Unauthorized**.  
+- Con token pegado en Authorize, Swagger ejecuta correctamente las requests.  
+- En Postman, los scripts de colección permiten refrescar automáticamente el token:  
+  - Si el access_token está vencido → se dispara un **POST /api/token/refresh/** con el refresh_token.  
+  - Se guarda un nuevo access_token en `environment`.  
+  - El request original se reintenta y devuelve **200 OK**.  
+
+---
