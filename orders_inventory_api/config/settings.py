@@ -46,9 +46,18 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'drf_spectacular_sidecar',
     'django_filters',
+    'rest_framework_simplejwt',
 ]
 
 REST_FRAMEWORK = {
+    # Auth global: JWT
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
+    # permisos globales: lectura pública, escritura con login
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
+    ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_FILTER_BACKENDS": [
         "django_filters.rest_framework.DjangoFilterBackend",
@@ -154,10 +163,24 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'Backend & Data Portfolio 2025 — Orders & Inventory API',
     'DESCRIPTION': 'Documentación OpenAPI 3 generada automáticamente (DJANGO + DRF)',
     'VERSION': '1.0.0',
-    # Para proteger api/docs con login de drf
-    'SERVE_PERMISSIONS': [] if DOCS_PUBLIC else ['rest_framework.permissions.IsAuthenticated'],
-}
 
-SPECTACULAR_SETTINGS.update({
-    "SERVE_INCLUDE_SCHEMA": False,      # evita duplicar el schema dentro de api/docs
-})
+    # Mostrar u colocar /api/docs según DOCS_PUBLIC
+    'SERVE_PERMISSIONS': [] if DOCS_PUBLIC else ['rest_framework.permissions.IsAuthenticated'],
+
+    # No incrustar el schema en /api/docs (lo servimos en /api/schema)
+    "SERVE_INCLUDE_SCHEMA": False,
+
+    # Seguridad por defecto para todos los endpoints
+    'SECURITY': [{'bearerAuth': []}],
+
+    # Definicion del esquema Bearer
+    'COMPONENTS': {
+        'securitySchemes': {
+            'bearerAuth': {
+                'type': 'http',
+                'scheme': 'bearer',
+                'bearerFormat': 'JWT',
+            }
+        }
+    }
+}

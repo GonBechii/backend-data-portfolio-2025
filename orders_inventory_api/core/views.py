@@ -7,7 +7,6 @@ from .serializers import (
     CustomerSerializer,
     OrderSerializer,
 )
-from django_filters.rest_framework import DjangoFilterBackend
 
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
@@ -25,7 +24,7 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all().order_by("id")
     serializer_class = CustomerSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]  # 🔒 requiere JWT válido
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter,
                        filters.OrderingFilter]
@@ -42,7 +41,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         .order_by("-id")
     )
     serializer_class = OrderSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]  # 🔒 requiere JWT válido
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter,
                        filters.OrderingFilter]
