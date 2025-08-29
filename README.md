@@ -244,7 +244,7 @@ backend-data-portfolio-2025/
 - [ ] **Semana 2:** Mejoras API — **Swagger/OpenAPI** en `/api/docs`, **colección Postman**, **JWT básico** y permisos por rol; afinar filtros/paginación
   - [x] **Día 1 (Lun 25/08):** Integración **Swagger/OpenAPI** en `/api/docs` con `drf-spectacular`, ajustes en serializers y validaciones.  
   - [x] **Día 2 (Mar 26/08):** Generar colección **Postman** desde OpenAPI.  
-  - [ ] **Día 3 (Mié 27/08):** **JWT básico** y pruebas de login/logout.  
+  - [x] **Día 3 (Mié 27/08):** **JWT básico** y pruebas de login/logout.  
   - [ ] **Día 4 (Vie 29/08):** **Permisos por rol** + afinación de filtros/paginación.
 
 - [ ] **Semana 3:** Tests (pytest/coverage), manejo de errores; `select_related/prefetch_related`, índices y `EXPLAIN`
