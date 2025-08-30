@@ -2,6 +2,7 @@ from decimal import Decimal
 from django.db import transaction
 from django.db.models import F
 from rest_framework import serializers
+from drf_spectacular.utils import extend_schema_field
 
 from .models import Product, Customer, Order, OrderItem
 
@@ -27,16 +28,16 @@ class OrderItemWriteSerializer(serializers.ModelSerializer):
         model = OrderItem
         fields = ("product", "quantity", "unit_price")
 
-        def validate_quantity(self, value):
-            if value <= 0:
-                raise serializers.ValidationError(
-                    "La cantidad debe ser mayor que 0.")
-            return value
+    def validate_quantity(self, value):
+        if value <= 0:
+            raise serializers.ValidationError(
+                "La cantidad debe ser mayor que 0.")
+        return value
 
 # ---- Items: Lectura (Get) ----
 
 
-class OrderItemReadSerializers(serializers.ModelSerializer):
+class OrderItemReadSerializer(serializers.ModelSerializer):
     product = ProductSerializer(read_only=True)
 
     class Meta:
@@ -66,10 +67,11 @@ class OrderSerializer(serializers.ModelSerializer):
         )
         read_only_fields = ("subtotal", "total", "created_at")
 
+    @extend_schema_field(OrderItemReadSerializer(many=True))
     def get_items_detail(self, obj):
-        # Funciona tangas o no related_name="items" en OrderItem.order
+        # Funciona tengas o no related_name="items" en OrderItem.order
         related = getattr(obj, "items", None) or getattr(obj, "orderitem_set")
-        return OrderItemReadSerializers(related.all(), many=True).data
+        return OrderItemReadSerializer(related.all(), many=True).data
 
     def create(self, validated_data):
         items_data = validated_data.pop("items", [])

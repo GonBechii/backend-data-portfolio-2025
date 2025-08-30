@@ -140,32 +140,10 @@ erDiagram
 - `POST /api/orders/` — crea orden con items anidados.
 
 ### Capturas - Semana 1
-1) **Admin - Productos**
-  ![Admin productos](docs/capturas/semana1/01-admin-productos.png)
+📸 Ver todas las capturas → [docs/capturas/semana1/](docs/capturas/semana1/)
 
-2) **Admin – Orden con ítems**  
-   ![Admin orden con ítems](docs/capturas/semana1/02-admin-orden-inline.png)
-
-3) **API Root**  
-   ![API Root](docs/capturas/semana1/03-api-root.png)
-
-4) **API – Customers**  
-   ![Customers list](docs/capturas/semana1/04-api-customers-list.png)
-
-5) **API – Orders**  
-   ![Orders list](docs/capturas/semana1/05-api-order-list.PNG)
-
-6) **Terminal - POST cliente (cURL)**
-   ![POST cliente](docs/capturas/semana1/07-cURL-create-order.png)
-
-7) **Terminal POST orden (cURL)**
-   ![POST orden](docs/capturas/semana1/07-cURL-create-order.png)
-
-8) **DRF - Resultado POST cliente**
-   ![DRF cliente](docs/capturas/semana1/08-cURL-DRF-customers.PNG)
-
-9) **DRF - Resultado POST orden**
-   ![DRF orden](docs/capturas/semana1/09-cURL-DRF-orders.PNG)
+### Capturas - Semana 2
+📸 Ver todas las capturas → [docs/capturas/semana2/](docs/capturas/semana2/)
 
 ### Importante Señalar:
 ## Durante la validación de la API con **cURL** se generaron archivos JSON de prueba (`body.json`, `order.json`) para enviar payloads a los endpoints de Customers y Orders.
@@ -263,7 +241,12 @@ backend-data-portfolio-2025/
         `CRUD /api/orders` (**creación con ítems anidados** y **descuento de stock atómico**)
   - [X] Documentación final S1 + capturas + mini demo (viernes)
 
-- [ ] **Semana 2:** Mejoras API — **Swagger/OpenAPI** en `/api/docs`, **colección Postman**, **JWT básico** y permisos por rol; afinar filtros/paginación
+- [x] **Semana 2:** Mejoras API — **Swagger/OpenAPI** en `/api/docs`, **colección Postman**, **JWT básico** y permisos por rol; afinar filtros/paginación
+  - [x] **Día 1 (Lun 25/08):** Integración **Swagger/OpenAPI** en `/api/docs` con `drf-spectacular`, ajustes en serializers y validaciones.  
+  - [x] **Día 2 (Mar 26/08):** Generar colección **Postman** desde OpenAPI.  
+  - [x] **Día 3 (Mié 27/08):** **JWT básico** y pruebas de login/logout.  
+  - [x] **Día 4 (Vie 29/08):** **Permisos por rol** + afinación de filtros/paginación.
+
 - [ ] **Semana 3:** Tests (pytest/coverage), manejo de errores; `select_related/prefetch_related`, índices y `EXPLAIN`
 - [ ] **Semana 4:** Tareas asíncronas (Celery), exportación CSV, correo
 - [ ] **Semana 5:** ETL (Pandas) con datos simulados → MySQL

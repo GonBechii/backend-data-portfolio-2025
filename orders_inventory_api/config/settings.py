@@ -10,10 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+
 from pathlib import Path
 import os
 from dotenv import load_dotenv
 
+
+DOCS_PUBLIC = os.getenv("DOCS_PUBLIC", "true").lower() == 'true'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / '.env')
@@ -41,16 +44,29 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
+    'drf_spectacular',
     'core',
+    'drf_spectacular_sidecar',
+    'rest_framework_simplejwt',
 ]
 
 REST_FRAMEWORK = {
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 10,
+    # Auth global: JWT
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
+    # permisos globales: lectura pública, escritura con login
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
+    ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
         "rest_framework.filters.SearchFilter",
         "rest_framework.filters.OrderingFilter",
     ],
+    "DEFAULT_PAGINATION_CLASS": "config.pagination.DefaultPagination",
 }
 
 MIDDLEWARE = [
@@ -143,7 +159,28 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 20
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Backend & Data Portfolio 2025 — Orders & Inventory API',
+    'DESCRIPTION': 'Documentación OpenAPI 3 generada automáticamente (DJANGO + DRF)',
+    'VERSION': '1.0.0',
+
+    # Mostrar u colocar /api/docs según DOCS_PUBLIC
+    'SERVE_PERMISSIONS': [] if DOCS_PUBLIC else ['rest_framework.permissions.IsAuthenticated'],
+
+    # No incrustar el schema en /api/docs (lo servimos en /api/schema)
+    "SERVE_INCLUDE_SCHEMA": False,
+
+    # Seguridad por defecto para todos los endpoints
+    'SECURITY': [{'bearerAuth': []}],
+
+    # Definicion del esquema Bearer
+    'COMPONENTS': {
+        'securitySchemes': {
+            'bearerAuth': {
+                'type': 'http',
+                'scheme': 'bearer',
+                'bearerFormat': 'JWT',
+            }
+        }
+    }
 }

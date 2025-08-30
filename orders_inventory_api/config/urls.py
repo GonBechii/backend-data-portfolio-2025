@@ -18,7 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from core.views import ProductViewSet, CustomerViewSet, OrderViewSet
-
+from rest_framework.permissions import IsAuthenticated
+from drf_spectacular.views import SpectacularSwaggerView, SpectacularRedocView, SpectacularAPIView
+from django.views.generic import RedirectView
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+)
 
 router = DefaultRouter()
 router.register(r"products", ProductViewSet, basename="product")
@@ -29,4 +36,23 @@ router.register(r"orders", OrderViewSet, basename="order")
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/", include(router.urls)),
+
+    # login/logout para SessionAuth
+    path('api-auth/', RedirectView.as_view(url='/api-auth/login/', permanent=False)),
+    path('api-auth/', include('rest_framework.urls')),
+
+    # OpenAPI schema + UIs
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'),
+         name='swagger-ui'),
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+
+
+    # JWT
+    path("api/token/", TokenObtainPairView.as_view(),
+         name='token_obtain_pair'),  # obtiene acces + refresh token
+    path("api/token/refresh/", TokenRefreshView.as_view(),
+         name='token_refresh'),   # refresca access token
+    path("api/token/verify/", TokenVerifyView.as_view(),
+         name='token_verify'),  # valida token
 ]

@@ -216,8 +216,6 @@ python manage.py runserver
 - **Conflicto al hacer push**  
   → `git pull --rebase`, resolver `README.md` y **push** final.
 
-
-
 ---
 
 ## Pendientes de la Semana 1
