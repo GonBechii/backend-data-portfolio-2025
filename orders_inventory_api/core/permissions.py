@@ -1,7 +1,7 @@
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 
-class IsRead_only(BasePermission):
+class IsReadOnly(BasePermission):
     """
     Permite lectura (GET/HEAD/OPTIONS) a cualquiera.
     Para escribir (POST/PUT/PATCH/DELETE) exige usuraio autenticado
