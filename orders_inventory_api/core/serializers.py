@@ -69,7 +69,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     @extend_schema_field(OrderItemReadSerializer(many=True))
     def get_items_detail(self, obj):
-        # Funciona tangas o no related_name="items" en OrderItem.order
+        # Funciona tengas o no related_name="items" en OrderItem.order
         related = getattr(obj, "items", None) or getattr(obj, "orderitem_set")
         return OrderItemReadSerializer(related.all(), many=True).data
 
