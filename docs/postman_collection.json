@@ -1664,9 +1664,27 @@
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{base_url}}/api/customers/",
 					"host": [
@@ -1712,7 +1730,6 @@
 						{
 							"key": "Content-Type",
 							"value": "application/json",
-							"name": "Content-Type",
 							"description": "",
 							"type": "text"
 						},
@@ -1848,7 +1865,6 @@
 						{
 							"key": "Content-Type",
 							"value": "application/json",
-							"name": "Content-Type",
 							"description": "",
 							"type": "text"
 						},
@@ -1952,7 +1968,6 @@
 						{
 							"key": "Content-Type",
 							"value": "application/json",
-							"name": "Content-Type",
 							"description": "",
 							"type": "text"
 						},
@@ -2085,7 +2100,6 @@
 						{
 							"key": "Content-Type",
 							"value": "application/json",
-							"name": "Content-Type",
 							"description": "",
 							"type": "text"
 						}
@@ -2094,6 +2108,509 @@
 					"body": ""
 				}
 			]
+		},
+		{
+			"name": "POST /api/token/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Guarda tokens en variables de entorno\r",
+							"const data = pm.response.json();\r",
+							"pm.test(\"200 ok y hay access\", () => pm.response.code===200 && !!data.access);\r",
+							"\r",
+							"\r",
+							"pm.environment.set(\"acces_token\", data.access);\r",
+							"pm.environment.set(\"refresh_token\", data.refresh);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"GonBechii\",\r\n    \"password\": \"M@11yGon\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/token/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /api/token/refresh/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const data = pm.response.json();\r",
+							"pm.environment.set(\"access_token\", data.access);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"refresh\": \"{{refresh_token}}\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/token/refresh/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"token",
+						"refresh",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /api/orders/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customer\": 1,\r\n  \"status\": \"PENDING\",\r\n  \"items\": [\r\n    { \"product\": 1, \"quantity\": 2 },\r\n    { \"product\": 3, \"quantity\": 1, \"unit_price\": 3500 }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/orders/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "201 - order created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customer\": 1,\r\n  \"status\": \"PENDING\",\r\n  \"items\": [\r\n    { \"product\": 1, \"quantity\": 2 },\r\n    { \"product\": 3, \"quantity\": 1, \"unit_price\": 3500 }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/orders/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 30 Aug 2025 00:22:01 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "474"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 4,\n    \"customer\": 1,\n    \"status\": \"PENDING\",\n    \"subtotal\": \"11480.00\",\n    \"total\": \"11480.00\",\n    \"created_at\": \"2025-08-29T20:22:01.329906-04:00\",\n    \"items_detail\": [\n        {\n            \"id\": 5,\n            \"product\": {\n                \"id\": 1,\n                \"sku\": \"ALM-CAF-500\",\n                \"name\": \"Café molido 500 g\",\n                \"price\": \"3990.00\",\n                \"stock\": 76\n            },\n            \"quantity\": 2,\n            \"unit_price\": \"3990.00\",\n            \"line_total\": \"7980.00\"\n        },\n        {\n            \"id\": 6,\n            \"product\": {\n                \"id\": 3,\n                \"sku\": \"ALI-AZU-1K\",\n                \"name\": \"Azúcar blanca 1 kg\",\n                \"price\": \"1490.00\",\n                \"stock\": 93\n            },\n            \"quantity\": 1,\n            \"unit_price\": \"1490.00\",\n            \"line_total\": \"1490.00\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET /api/products/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/products/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 - products list",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 30 Aug 2025 00:09:29 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "981"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"count\": 20,\n    \"next\": \"http://127.0.0.1:8000/api/products/?page=2\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 1,\n            \"sku\": \"ALM-CAF-500\",\n            \"name\": \"Café molido 500 g\",\n            \"price\": \"3990.00\",\n            \"stock\": 78\n        },\n        {\n            \"id\": 2,\n            \"sku\": \"ALI-ARZ-1K\",\n            \"name\": \"Arroz largo 1 kg\",\n            \"price\": \"1890.00\",\n            \"stock\": 120\n        },\n        {\n            \"id\": 3,\n            \"sku\": \"ALI-AZU-1K\",\n            \"name\": \"Azúcar blanca 1 kg\",\n            \"price\": \"1490.00\",\n            \"stock\": 94\n        },\n        {\n            \"id\": 4,\n            \"sku\": \"BEB-JUG-NAR1L\",\n            \"name\": \"Jugo de naranja 1 L\",\n            \"price\": \"1790.00\",\n            \"stock\": 60\n        },\n        {\n            \"id\": 5,\n            \"sku\": \"BEB-AGM-1500\",\n            \"name\": \"Agua mineral 1.5 L\",\n            \"price\": \"990.00\",\n            \"stock\": 200\n        },\n        {\n            \"id\": 6,\n            \"sku\": \"LIM-DET-900\",\n            \"name\": \"Detergente líquido 900 ml\",\n            \"price\": \"3590.00\",\n            \"stock\": 70\n        },\n        {\n            \"id\": 7,\n            \"sku\": \"LIM-SUAV-900\",\n            \"name\": \"Suavizante 900 ml\",\n            \"price\": \"3290.00\",\n            \"stock\": 65\n        },\n        {\n            \"id\": 8,\n            \"sku\": \"HOG-PAP-HIG4\",\n            \"name\": \"Papel higiénico 4 un\",\n            \"price\": \"2690.00\",\n            \"stock\": 85\n        },\n        {\n            \"id\": 9,\n            \"sku\": \"HOG-TOA-COC2\",\n            \"name\": \"Toalla de cocina 2 un\",\n            \"price\": \"2390.00\",\n            \"stock\": 40\n        },\n        {\n            \"id\": 10,\n            \"sku\": \"SNK-GAL-CHO\",\n            \"name\": \"Galletas de chocolate 150 g\",\n            \"price\": \"1190.00\",\n            \"stock\": 100\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET /api/products/?search=café",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/products/?search=café",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "café"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/products/?ordering=price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/products/?ordering=price",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "ordering",
+							"value": "price",
+							"description": "de más barato a más caro"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/products/?ordering=-price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/products/?ordering=-price",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "ordering",
+							"value": "-price",
+							"description": "de más caro a más barato"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/orders/?status=PAID&ordering=-total&page=1&page_size=5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/orders/?status=PAID&ordering=-total&page=1&page_size=5",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"orders",
+						""
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "PAID"
+						},
+						{
+							"key": "ordering",
+							"value": "-total"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"// ------- Pre-req (antes de enviar) -------\r",
+					"const access = pm.environment.get(\"access_token\");\r",
+					"const refresh = pm.environment.get(\"refresh_token\");\r",
+					"\r",
+					"if (!access) {\r",
+					"  console.log(\"⚠️ No hay access_token definido todavía.\");\r",
+					"}\r",
+					"\r",
+					"// OPCIONAL: si no usas la pestaña Auth (Bearer {{access_token}}), \r",
+					"// aseguramos el header por código:\r",
+					"pm.request.headers.upsert({\r",
+					"  key: \"Authorization\",\r",
+					"  value: `Bearer ${access || \"\"}`\r",
+					"});\r",
+					"pm.request.headers.upsert({ key: \"Content-Type\", value: \"application/json\" });\r",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"// ------- Post-res (Tests) -------\r",
+					"const status = pm.response.code;\r",
+					"\r",
+					"// Flag para evitar loops infinitos\r",
+					"const retryFlag = \"retry_after_refresh\";\r",
+					"\r",
+					"// Si la API respondió 401, intentamos refresh\r",
+					"if (status === 401 && !pm.environment.get(retryFlag)) {\r",
+					"  console.log(\"🔄 401 recibido. Intentando refresh con el refresh_token...\");\r",
+					"\r",
+					"  const base = pm.environment.get(\"base_url\");\r",
+					"  const refresh = pm.environment.get(\"refresh_token\");\r",
+					"\r",
+					"  pm.environment.set(retryFlag, \"1\"); // marcamos que vamos a reintentar\r",
+					"\r",
+					"  pm.sendRequest(\r",
+					"    {\r",
+					"      url: `${base}/api/token/refresh/`,\r",
+					"      method: \"POST\",\r",
+					"      header: { \"Content-Type\": \"application/json\" },\r",
+					"      body: {\r",
+					"        mode: \"raw\",\r",
+					"        raw: JSON.stringify({ refresh })\r",
+					"      }\r",
+					"    },\r",
+					"    (err, res) => {\r",
+					"      if (!err && res.code === 200) {\r",
+					"        const data = res.json();\r",
+					"        pm.environment.set(\"access_token\", data.access);\r",
+					"        console.log(\"✅ Nuevo access_token guardado. Reintentando request...\");\r",
+					"\r",
+					"        // Re-ejecuta esta misma request (Collection/Folder Runner)\r",
+					"        postman.setNextRequest(pm.info.requestName);\r",
+					"      } else {\r",
+					"        // Limpia el flag para no quedar bloqueado\r",
+					"        pm.environment.unset(retryFlag);\r",
+					"        console.error(\"❌ Falló el refresh:\", err || res.text());\r",
+					"      }\r",
+					"    }\r",
+					"  );\r",
+					"} else {\r",
+					"  // Si no fue 401 o ya reintentamos, limpiamos el flag\r",
+					"  pm.environment.unset(retryFlag);\r",
+					"}\r",
+					""
+				]
+			}
 		}
 	],
 	"variable": [
