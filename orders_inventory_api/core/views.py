@@ -1,18 +1,21 @@
 from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets, permissions, filters
+from rest_framework import viewsets, filters
 from .models import Product, Customer, Order
 from .serializers import (
     ProductSerializer,
     CustomerSerializer,
     OrderSerializer,
 )
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from .permissions import IsRead_only
 
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all().order_by("id")
     serializer_class = ProductSerializer
-    permission_classes = [permissions.AllowAny]
+    # Público en lectura; si lo intentaran escribir, exige login
+    permission_classes = [IsRead_only]
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter,
                        filters.OrderingFilter]
@@ -24,7 +27,8 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all().order_by("id")
     serializer_class = CustomerSerializer
-    permission_classes = [permissions.IsAuthenticated]  # 🔒 requiere JWT válido
+    # Requiere usuario autenticado para TODO
+    permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter,
                        filters.OrderingFilter]
@@ -41,7 +45,8 @@ class OrderViewSet(viewsets.ModelViewSet):
         .order_by("-id")
     )
     serializer_class = OrderSerializer
-    permission_classes = [permissions.IsAuthenticated]  # 🔒 requiere JWT válido
+    # Requiere usuario autenticado para TODO
+    permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter,
                        filters.OrderingFilter]
