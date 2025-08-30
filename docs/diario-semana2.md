@@ -10,13 +10,13 @@
 - [x] **Día 1 (Lun 25/08):** Integración de Swagger/OpenAPI (drf-spectacular). — **completado**
 - [x] **Día 2 (Mar 26/08):** Generar colección Postman desde OpenAPI. **completado**
 - [x] **Día 3 (Mié 27/08):** JWT básico y pruebas de login/logout. **completado**
-- [ ] **Día 4 (Vie 29/08):** Permisos por rol + afinación de filtros/paginación. — _pendiente_
+- [x] **Día 4 (Vie 29/08):** Permisos por rol + afinación de filtros/paginación. **completado**
 ---
 ## Pendientes de la Semana 2
 - [x] Generar y versionar colección Postman.
 - [x] Implementar JWT básico.
-- [ ] Configurar permisos por rol.
-- [ ] Afinar filtros y paginación de endpoints.
+- [x] Configurar permisos por rol.
+- [x] Afinar filtros y paginación de endpoints.
 ---
 
 ## Día 1 — Lunes 25 ago 2025
@@ -123,7 +123,7 @@ python manage.py runserver
 
 ---
 
-## 📅 Día 3 — Mié 27/08/2025  
+### 📅 Día 3 — Mié 27/08/2025  ###
 **Tema:** JWT básico + autenticación en Swagger/Postman  
 
 ### 🔑 Objetivos
@@ -137,31 +137,31 @@ python manage.py runserver
 ### ✅ Evidencia ### Capturas
 
 1. **Swagger — popup Authorize**  
-   ![Swagger Authorize](./docs/capturas/semana2/dia3/01-swagger-authorize.png)
+   ![Swagger Authorize](./capturas/semana2/dia3/01-swagger-authorize.png)
 
 2. **Swagger — endpoint autenticado con token (200 OK)**  
-   ![Swagger Authenticated](../docs/capturas/semana2/dia3/02-swagger-authenticated.png)
+   ![Swagger Authenticated](./capturas/semana2/dia3/02-swagger-authenticated.png)
 
 3. **Postman — /api/token/ (access + refresh generados)**  
-   ![Postman token](../docs/capturas/semana2/dia3/03-postman-token.png)
+   ![Postman token](./capturas/semana2/dia3/03-postman-token.png)
 
 4. **Postman — Header Authorization con Bearer {{access_token}}**  
-   ![Postman auth header](../docs/capturas/semana2/dia3/04-postman-auth-header.png)
+   ![Postman auth header](./capturas/semana2/dia3/04-postman-auth-header.png)
 
 5. **Postman — /api/token/refresh/ (nuevo access)**  
-   ![Postman refresh A](../docs/capturas/semana2/dia3/05-postman-refresh-A.png)  
-   ![Postman refresh B](../docs/capturas/semana2/dia3/05-postman-refresh-B.png)
+   ![Postman refresh A](./capturas/semana2/dia3/05-postman-refresh-A.png)  
+   ![Postman refresh B](./capturas/semana2/dia3/05-postman-refresh-B.png)
 
 6. **Postman — 401 + auto-refresh funcionando (parte A)**  
-   ![Postman 401 auto-refresh A](../docs/capturas/semana2/dia3/06-postman-401-and-auto-refresh-A.png)
+   ![Postman 401 auto-refresh A](./capturas/semana2/dia3/06-postman-401-and-auto-refresh-A.png)
 
 7. **Postman — 401 + auto-refresh funcionando (parte B, reintento OK)**  
-   ![Postman 401 auto-refresh B](../docs/capturas/semana2/dia3/06-postman-401-and-auto-refresh-B.png)
+   ![Postman 401 auto-refresh B](./capturas/semana2/dia3/06-postman-401-and-auto-refresh-B.png)
 
 8. **Swagger — GET /api/customers/ sin auth (401)**  
-   ![Swagger 401 without auth](../docs/capturas/semana2/dia3/07-swagger-401-without-auth.png)
+   ![Swagger 401 without auth](./capturas/semana2/dia3/07-swagger-401-without-auth.png)
 
-📸 Ver carpeta completa → [docs/capturas/semana2/dia3/](../docs/capturas/semana2/dia3/)
+📸 Ver carpeta completa → [docs/capturas/semana2/dia3/](./capturas/semana2/dia3/)
 
 ---
 
@@ -174,3 +174,63 @@ python manage.py runserver
   - El request original se reintenta y devuelve **200 OK**.  
 
 ---
+
+## 📅 Día 4 — Vie 29/08/2025  
+**Tema:** Permisos por rol + afinación de filtros y paginación  
+
+### 🔑 Objetivos
+- Restringir acceso con **permisos por rol**:
+  - `ProductViewSet` → solo lectura pública (auth requerida si intentan escribir).
+  - `CustomerViewSet` y `OrderViewSet` → autenticación obligatoria.
+- Implementar y validar **filtros de búsqueda y ordenación** en Swagger/Postman.
+- Afinar **paginación personalizada** con `page` y `page_size`.
+
+---
+
+### ✅ Evidencia ### Capturas
+
+1. **Swagger — paginación funcionando (parte A)**  
+   ![Swagger pagination A](./capturas/semana2/dia4/02-swagger-pagination-A.png)
+
+2. **Swagger — paginación funcionando (parte B)**  
+   ![Swagger pagination B](./capturas/semana2/dia4/02-swagger-pagination-B.png)
+
+3. **Swagger — filtros ASC (parte A)**  
+   ![Swagger filters ASC A](./capturas/semana2/dia4/03-swagger-filters-(ASC)-A.png)  
+
+4. **Swagger — filtros ASC (parte B)**  
+   ![Swagger filters ASC B](./capturas/semana2/dia4/03-swagger-filters-(ASC)-B.png)  
+
+5. **Postman — customers sin token (401)**  
+   ![Postman customers 401](./capturas/semana2/dia4/04-postman-customers-401.png)
+
+6. **Postman — customers autenticado (200)**  
+   ![Postman customers 200](./capturas/semana2/dia4/05-postman-customers-200.png)
+
+7. **Postman — filtros en orders**  
+   ![Postman orders filters](./capturas/semana2/dia4/06-postman-orders-filters.png)
+
+8. **DRF — ordering por precio ASC**  
+   ![DRF ordering ASC](./capturas/semana2/dia4/07-DRF-ordering-price-asc.png)
+
+9. **DRF — ordering por precio DESC**  
+   ![DRF ordering DESC](./capturas/semana2/dia4/08-DRF-ordering-price-desc.png)
+
+📸 Ver carpeta completa → [docs/capturas/semana2/dia4/](./capturas/semana2/dia4/)
+
+---
+
+### 📝 Notas
+- Se añadió clase `IsRead_only` en `permissions.py` para productos → **lectura libre**, escritura requiere autenticación.
+- `CustomerViewSet` y `OrderViewSet` quedaron protegidos con `IsAuthenticated`.
+- Se configuró **`DefaultPagination`** con parámetros `page` y `page_size`.
+- Probado en Swagger y Postman:
+  - **401** sin token en endpoints protegidos.
+  - **200 OK** con `Bearer {{access_token}}`.
+  - Filtros (`search`, `ordering`) y paginación responden correctamente.
+
+---
+
+### ▶️ Próximos pasos
+- Preparar **Semana 3**: enfoque en pruebas automáticas (`pytest`, `coverage`) y optimización con `select_related`/`prefetch_rela
+
