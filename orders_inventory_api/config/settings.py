@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'drf_spectacular',
-    'core',
+    'orders_inventory_api.core',
     'drf_spectacular_sidecar',
     'rest_framework_simplejwt',
 ]
