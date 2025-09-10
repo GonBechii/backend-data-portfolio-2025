@@ -96,3 +96,36 @@ Crear tests de `/api/products/`:
 - Acceso público (**401/403**).  
 - Acceso con auth (**200**, lista de productos).  
 - Paginación (**count**, **results**, **next**, **previous**).
+
+## Día 3 — Tests para Products + Ajustes de permisos DB
+
+### ✅ Objetivos del día
+- Configurar correctamente los permisos de usuario `app@%` en MariaDB para que Django pueda crear la base de datos de test.
+- Implementar y ajustar pruebas de `ProductViewSet` en `core/tests/test_products.py`.
+- Validar acceso público de lectura (GET) y bloqueo de escritura (POST).
+- Confirmar que todos los tests pasen en verde y revisar cobertura.
+
+### Plan de pruebas — Día 3 (Semana 3)
+
+| Caso | Endpoint             | Setup                          | Acción                                        | Resultado esperado                                     |
+|------|----------------------|--------------------------------|-----------------------------------------------|--------------------------------------------------------|
+| 1    | `/api/products/`     | Ninguno                        | GET sin token                                 | 401 Unauthorized o 403 Forbidden                       |
+| 2    | `/api/products/`     | Usuario autenticado            | GET con token válido                          | 200 OK + lista de productos                            |
+| 3    | `/api/products/`     | Usuario + 15 productos creados | GET con token válido y `?page=1`              | 200 OK + campos `count`, `results`, `next`, `previous` |
+| 4    | `/api/products/`     | Usuario + productos            | GET con token válido y `?ordering=unit_price` | 200 OK + productos ordenados por precio                |
+
+
+### 📸 Evidencias
+
+![tests-verdes](./capturas/semana3/dia3//01-test-all-passed.png)  
+*Ejecución final de pytest con todos los tests aprobados.*
+
+![coverage-dia3](./capturas/semana3/dia3/02-coverage-dia-3.png)  
+*Reporte de cobertura al cierre del día (73%).*
+
+📸 Ver carpeta completa → [docs/capturas/semana3/dia2/](./capturas/semana3/dia3/)
+
+### 📌 Notas
+- Se confirmó que `ProductViewSet` funciona como `ReadOnlyModelViewSet`: lectura pública, escritura protegida.  
+- Las pruebas fueron ajustadas para reflejar la política de permisos y la estructura paginada de DRF.  
+- Cobertura general se mantiene en ~73%, próximos pasos: añadir más tests para `CustomerViewSet` y `OrderViewSet`.

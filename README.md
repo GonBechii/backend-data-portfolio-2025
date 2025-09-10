@@ -252,7 +252,7 @@ backend-data-portfolio-2025/
 - [ ] **Semana 3(en curso):** Tests (pytest/coverage), manejo de errores; `select_related/prefetch_related`, índices y `EXPLAIN`
   - [x] **Día 1 (Lun 08/09):** Setup pytest + deps, fix CheckConstraint
   - [x] **Día 2 (Mar 09/09):** Fixtures + primer test Swagger
-  - [ ] **Día 3 (Mié 10/09):** Tests Products (auth + paginación)
+  - [x] **Día 3 (Mié 10/09):** Tests Products (auth + paginación)
   - [ ] **Día 4 (Vie 12/09):** Tests Orders (totales + stock)
 - [ ] **Semana 4:** Tareas asíncronas (Celery), exportación CSV, correo
 - [ ] **Semana 5:** ETL (Pandas) con datos simulados → MySQL
