@@ -32,6 +32,8 @@
 pytest -q
 # salida: collected 0 items
 # coverage: 37%
+```
+📸 Ver carpeta completa → [docs/capturas/semana3/dia1/](./capturas/semana3/dia1/)
 ---
 ## 🧱 Bloqueos y soluciones
 
@@ -48,3 +50,49 @@ pytest -q
 - Agregar primer test de Swagger (/api/docs).
 
 - Commit esperado: test(S3D2): add base fixtures + swagger ui test.
+
+--- 
+
+## Día 2 — Martes 09 sep 2025
+
+### 🎯 Objetivo del día
+- Implementar `conftest.py` con fixtures reutilizables (api_client, user, auth_client, product).
+- Escribir y ejecutar el primer test real: Swagger UI en `/api/docs`.
+
+### ✅ Lo conseguido
+- `conftest.py` creado en `orders_inventory_api/tests/`.
+- Fixtures reconocidas por pytest (`pytest --fixtures` mostró `api_client`, `user`, `auth_client`, `product`).
+- Primer test `test_docs.py` ejecutado en verde ✅.
+- Cobertura aumentó a **68%**.
+
+### 🧪 Evidencia rápida
+```powershell
+pytest -q
+. [100%]
+```
+### 📸 Capturas guardadas
+- **01-pytest-fixtures.png**  
+  ![Salida de pytest --fixtures mostrando nuestras fixtures](./capturas/semana3/dia2/01-pytest-fixtures.png)
+- **02-swagger-test-pass.png**  
+  ![Salida de pytest -q con el punto verde](./capturas/semana3/dia2/02-swagger-test-pass.png)
+- **03-coverage-68.png**  
+  ![Reporte de cobertura en consola mostrando 68%](./capturas/semana3/dia2/03-coverage-68.png)
+
+📸 Ver carpeta completa → [docs/capturas/semana3/dia2/](./capturas/semana3/dia2/)
+
+---
+
+### 🧱 Bloqueos y soluciones
+- **Problema:** `ModuleNotFoundError: No module named 'config'`.  
+  **Solución:** corregir imports en `urls.py` y `settings.py` → `orders_inventory_api.config.*`.  
+
+- **Problema:** Paginación DRF referenciada como `config.pagination`.  
+  **Solución:** corregido a `orders_inventory_api.config.pagination.DefaultPagination`.
+
+---
+
+### ▶️ Próximos pasos (para el Día 3)
+Crear tests de `/api/products/`:
+- Acceso público (**401/403**).  
+- Acceso con auth (**200**, lista de productos).  
+- Paginación (**count**, **results**, **next**, **previous**).
