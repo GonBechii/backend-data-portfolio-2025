@@ -66,7 +66,7 @@ REST_FRAMEWORK = {
         "rest_framework.filters.SearchFilter",
         "rest_framework.filters.OrderingFilter",
     ],
-    "DEFAULT_PAGINATION_CLASS": "config.pagination.DefaultPagination",
+    "DEFAULT_PAGINATION_CLASS": "orders_inventory_api.config.pagination.DefaultPagination",
 }
 
 MIDDLEWARE = [
@@ -79,7 +79,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = 'orders_inventory_api.config.urls'
 
 TEMPLATES = [
     {
