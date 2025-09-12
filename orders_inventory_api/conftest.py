@@ -27,9 +27,9 @@ def auth_client(api_client, user):
     response = api_client.post(
         url, {"username": "tester", "password": "pass12345"}, format="json"
     )
-    assert response.status_code == 200, "No se pudo autenticar en fixture"
+    assert response.status_code == 200, "No se pudo autenticar en fixture: {response.data}"
     token = response.data["access"]
-    api_client.credentials = {"HTTP_AUTHORIZATION": f"Bearer {token}"}
+    api_client.credentials(HTTP_AUTHORIZATION=f"Bearer {token}")
     return api_client
 
 
