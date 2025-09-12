@@ -82,7 +82,7 @@ class OrderItem(models.Model):
     class Meta:
         unique_together = (("order", "product"),)
         constraints = [
-            models.CheckConstraint(check=models.Q(
+            models.CheckConstraint(condition=models.Q(
                 quantity__gt=0), name="quantity_gt_0"),
         ]
 

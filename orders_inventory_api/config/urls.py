@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from core.views import ProductViewSet, CustomerViewSet, OrderViewSet
+from orders_inventory_api.core.views import ProductViewSet, CustomerViewSet, OrderViewSet
 from rest_framework.permissions import IsAuthenticated
 from drf_spectacular.views import SpectacularSwaggerView, SpectacularRedocView, SpectacularAPIView
 from django.views.generic import RedirectView

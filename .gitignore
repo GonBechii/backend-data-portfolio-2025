@@ -8,3 +8,5 @@ orders_inventory_api/.venv/
 Thumbs.db
 'n__pycache__/'n*.py[cod]'n.venv/'norders_inventory_api/.env'n
 
+# pytest coverage
+.coverage
